@@ -3,23 +3,10 @@
 ==========================================
 Este archivo contiene únicamente los atajos específicos para Clip Studio Paint.
 El sistema base está en MacroKeyboardSystem.lua
-
-FUNCIONES ESPECÍFICAS DE CSP:
-• Color Picker: Tu solución que funciona con screen_color_pick()
-• Brush Size +/-: Ajustar tamaño de pincel
-• Undo/Redo: Deshacer y rehacer acciones
-• Zoom: Acercar y alejar canvas
-• Rotate Canvas: Rotar lienzo
-• Hand Tool: Herramienta mano para navegar
-
-INSTRUCCIONES:
-1. Descomenta las teclas que quieras usar
-2. Modifica las acciones según tus preferencias
-3. Ejecuta el script para activar las macros
 --]]
 
 -- Cargar el sistema base de teclado macro
-require('./configuration/MacroKeyboardSystem')
+require('../configuration/MacroKeyboardSystem')
 
 -- ========================================
 -- FUNCIONES ESPECÍFICAS DE CLIP STUDIO PAINT
@@ -132,7 +119,7 @@ local csp_key_mappings = {
 print('🎨 Configurando atajos para Clip Studio Paint...')
 print('==========================================')
 print('✨ Teclas configuradas:')
-print('   🎨 A: Color Picker (tu solución que funciona)')
+print('   🎨 A: Screen Color Picker')
 print('   🖌️  B: Pincel')
 print('   🧽 C: Borrador')
 print('   👁️  D: Cuentagotas')

@@ -18,7 +18,7 @@ INSTRUCCIONES:
 --]]
 
 -- Cargar el sistema base de teclado macro
-require('./configuration/MacroKeyboardSystem')
+require('../configuration/MacroKeyboardSystem')
 
 -- ========================================
 -- FUNCIONES ESPECÍFICAS PARA WINDOWS
