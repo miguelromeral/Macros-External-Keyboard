@@ -2,6 +2,16 @@
 
 Esta guía te ayuda a crear tus propios archivos de configuración para diferentes aplicaciones usando el sistema de teclado macro LuaMacros.
 
+## Ejecutar
+
+Desde la propia carpeta, en una **terminal**:
+
+```
+.\shortcuts\EjecutarMacrosCSP.bat
+```
+
+Ahí, darle a Play en **Lua Macros**.
+
 ## 📋 Estructura Básica de un Archivo de Configuración
 
 ### 1. Cargar el Sistema Base
