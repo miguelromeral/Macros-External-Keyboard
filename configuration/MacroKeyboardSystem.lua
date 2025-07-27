@@ -235,9 +235,9 @@ function setup_handler(key_mappings)
         
         -- Handler para nuestro dispositivo específico
         lmc_set_handler(DEVICE_NAME, function(key, direction)
-            print(string.format('📱 %s - Tecla: %d, Evento: %s', 
-                DEVICE_NAME, key, 
-                direction == 0 and "PRESIONADA" or "LIBERADA"))
+            -- print(string.format('📱 %s - Tecla: %d, Evento: %s', 
+            --     DEVICE_NAME, key, 
+            --     direction == 0 and "PRESIONADA" or "LIBERADA"))
             
             local mapping = current_key_mappings[key]  -- Usar la variable global
             if mapping then
@@ -246,9 +246,9 @@ function setup_handler(key_mappings)
                 return false -- ⭐ BLOQUEAR la tecla original SIEMPRE
             else
                 -- Tecla no configurada - solo mostrar mensaje en keydown
-                if direction == 0 then
-                    print(string.format('❓ Tecla no asignada: %d', key))
-                end
+                -- if direction == 0 then
+                --     print(string.format('❓ Tecla no asignada: %d', key))
+                -- end
                 return true -- Permitir que teclas no asignadas pasen normalmente
             end
         end)
@@ -282,9 +282,7 @@ end
 function update_key_mappings(new_key_mappings)
     current_key_mappings = new_key_mappings
     
-    print('🔄 ==========================================')
-    print('   ACTUALIZANDO MAPPINGS DE TECLAS')
-    print('==========================================')
+    print('ACTUALIZANDO MAPPINGS DE TECLAS')
     
     -- Mostrar resumen de teclas configuradas
     local count = 0
@@ -292,7 +290,6 @@ function update_key_mappings(new_key_mappings)
         count = count + 1
     end
     print(string.format('📊 Total de teclas configuradas: %d', count))
-    print('==========================================\n')
     
     return true
 end

@@ -7,7 +7,7 @@ REM y mantiene la terminal abierta para ver los mensajes
 
 echo.
 echo ==========================================
-echo 🎨 INICIANDO MACROS PARA CLIP STUDIO PAINT
+echo INICIANDO MACROS PARA CLIP STUDIO PAINT
 echo ==========================================
 echo.
 
@@ -16,7 +16,7 @@ cd /d "%~dp0\.."
 
 REM Verificar que existe el archivo principal
 if not exist "shortcuts\ShortcutsCSP.lua" (
-    echo ❌ ERROR: No se encuentra el archivo shortcuts\ShortcutsCSP.lua
+    echo [ERROR]: No se encuentra el archivo shortcuts\ShortcutsCSP.lua
     echo    Verifica que el archivo esté en la carpeta shortcuts\
     echo.
     pause
@@ -25,7 +25,7 @@ if not exist "shortcuts\ShortcutsCSP.lua" (
 
 REM Verificar que existe el sistema base
 if not exist "configuration\MacroKeyboardSystem.lua" (
-    echo ❌ ERROR: No se encuentra configuration\MacroKeyboardSystem.lua
+    echo [ERROR]: No se encuentra configuration\MacroKeyboardSystem.lua
     echo    Este archivo es necesario para que funcionen los scripts
     echo.
     pause
@@ -33,12 +33,12 @@ if not exist "configuration\MacroKeyboardSystem.lua" (
 )
 
 REM Mostrar información del sistema
-echo 📁 Directorio actual: %CD%
-echo 📄 Ejecutando: shortcuts\ShortcutsCSP.lua
+echo [DIRECTORIO ACTUAL]: %CD%
+echo [EJECUTANDO]: shortcuts\ShortcutsCSP.lua
 echo.
 
 REM Ejecutar LuaMacros con el script
-echo ⚡ Iniciando LuaMacros...
+echo Iniciando LuaMacros...
 echo ==========================================
 
 REM Ejecutar LuaMacros - ajusta la ruta según tu instalación
@@ -51,21 +51,21 @@ REM "%LOCALAPPDATA%\Programs\LuaMacros\LuaMacros.exe" "shortcuts\ShortcutsCSP.lu
 
 echo.
 echo ==========================================
-echo 🏁 SCRIPT FINALIZADO
+echo SCRIPT FINALIZADO
 echo ==========================================
 echo.
 
 REM Verificar si hubo algún error
 if %errorlevel% neq 0 (
-    echo ❌ ERROR: LuaMacros terminó con código de error %errorlevel%
+    echo [ERROR]: LuaMacros terminó con código de error %errorlevel%
     echo.
-    echo 💡 Posibles soluciones:
+    echo [Posibles soluciones:]
     echo    • Verifica que LuaMacros esté instalado correctamente
     echo    • Ajusta la ruta de LuaMacros en este archivo .bat
     echo    • Revisa que el dispositivo USB esté conectado
     echo    • Ejecuta como administrador si es necesario
 ) else (
-    echo ✅ LuaMacros se ejecutó correctamente
+    echo [SUCCESS]: LuaMacros se ejecutó correctamente
 )
 
 echo.
