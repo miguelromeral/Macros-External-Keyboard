@@ -14,6 +14,9 @@ require('MacroKeyboardSystem')
 local KEYBOARD_ID = 'VID&0205AC_PID&022C'
 local DEVICE_NAME = 'MACRO'
 
+-- Variable global para almacenar los mappings actuales
+local current_key_mappings = {}
+
 -- ========================================
 -- CÓDIGOS DE TECLAS DISPONIBLES
 -- ========================================
@@ -118,6 +121,65 @@ function send_volume_up()
 end
 
 -- ========================================
+-- FUNCIONES ESPECÍFICAS PARA WINDOWS
+-- ========================================
+
+-- Funciones de ventanas
+function minimize_window()
+    lmc_send_keys('#m')  -- Win + M
+end
+
+function maximize_window()
+    lmc_send_keys('#{UP}')  -- Win + Flecha Arriba
+end
+
+function show_desktop()
+    lmc_send_keys('#d')  -- Win + D
+end
+
+function task_manager()
+    lmc_send_keys('^+{ESC}')  -- Ctrl + Shift + Esc
+end
+
+-- Funciones de texto
+function select_all()
+    lmc_send_keys('^a')  -- Ctrl + A
+end
+
+function find_text()
+    lmc_send_keys('^f')  -- Ctrl + F
+end
+
+function replace_text()
+    lmc_send_keys('^h')  -- Ctrl + H
+end
+
+-- Navegación de pestañas avanzada
+function close_all_tabs()
+    lmc_send_keys('^+w')  -- Ctrl + Shift + W
+end
+
+function duplicate_tab()
+    lmc_send_keys('^+k')  -- Ctrl + Shift + K (algunos navegadores)
+end
+
+-- Control de medios
+function play_pause()
+    lmc_send_input(179, 0, 0)  -- VK_MEDIA_PLAY_PAUSE
+    lmc_send_input(179, 2, 0)
+end
+
+function next_track()
+    lmc_send_input(176, 0, 0)  -- VK_MEDIA_NEXT_TRACK
+    lmc_send_input(176, 2, 0)
+end
+
+function prev_track()
+    lmc_send_input(177, 0, 0)  -- VK_MEDIA_PREV_TRACK
+    lmc_send_input(177, 2, 0)
+end
+
+-- ========================================
 -- CONFIGURACIÓN DEL DISPOSITIVO
 -- ========================================
 function setup_device()
@@ -161,6 +223,9 @@ end
 -- ========================================
 function setup_handler(key_mappings)
     local success, error_msg = pcall(function()
+        -- Guardar los mappings globalmente
+        current_key_mappings = key_mappings
+        
         -- Configurar el dispositivo primero
         local device_ready = setup_device()
         if not device_ready then
@@ -174,7 +239,7 @@ function setup_handler(key_mappings)
                 DEVICE_NAME, key, 
                 direction == 0 and "PRESIONADA" or "LIBERADA"))
             
-            local mapping = key_mappings[key]
+            local mapping = current_key_mappings[key]  -- Usar la variable global
             if mapping then
                 -- Ejecutar la acción (solo en keydown)
                 handle_key(key, mapping.name, mapping.action, direction)
@@ -207,6 +272,27 @@ function setup_handler(key_mappings)
         print(string.format('❌ Error configurando el handler: %s', error_msg))
         return false
     end
+    
+    return true
+end
+
+-- ========================================
+-- FUNCIÓN PARA ACTUALIZAR SOLO LOS MAPPINGS
+-- ========================================
+function update_key_mappings(new_key_mappings)
+    current_key_mappings = new_key_mappings
+    
+    print('🔄 ==========================================')
+    print('   ACTUALIZANDO MAPPINGS DE TECLAS')
+    print('==========================================')
+    
+    -- Mostrar resumen de teclas configuradas
+    local count = 0
+    for _ in pairs(current_key_mappings) do
+        count = count + 1
+    end
+    print(string.format('📊 Total de teclas configuradas: %d', count))
+    print('==========================================\n')
     
     return true
 end
